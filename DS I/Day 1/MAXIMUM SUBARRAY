@@ -1,0 +1,8 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+       m=min(nums)
+       c=0
+       for i in range(len(nums)):
+            c=max(c+nums[i],nums[i])
+            m=max(m,c)
+       return m
