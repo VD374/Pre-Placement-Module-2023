@@ -1,0 +1,5 @@
+class Solution(object):
+    def sortedSquares(self, nums):
+        p=[i**2 for i in nums]
+        p.sort()
+        return p
