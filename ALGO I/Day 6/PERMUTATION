@@ -1,0 +1,17 @@
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+       
+         def dicter(word):
+            wdict = {}
+            for i in set(word):
+                wdict[i] = word.count(i)
+            return wdict
+
+         s1dict = dicter(s1)
+        
+         for i in range(len(s2)-len(s1)+1):
+            if s2[i] in s1dict.keys():
+                s2dict = dicter(s2[i:(i+len(s1))])
+                if s2dict==s1dict:
+                    return True
+         return False
