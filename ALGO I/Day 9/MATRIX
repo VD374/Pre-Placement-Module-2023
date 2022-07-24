@@ -1,0 +1,22 @@
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        m, n = len(mat), len(mat[0])
+        dirs = [[0,1], [1,0], [-1,0], [0,-1]]
+        q = []
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j] == 0:
+                    q.append((i, j))
+        
+        vis = set()
+        while q:
+            node = q.pop(0)
+            for each in dirs:
+                row, col = node[0] + each[0], node[1] + each[1]
+                
+                if 0 <= row < m and 0 <= col < n and (row, col) not in vis and mat[row][col] == 1:
+                    mat[row][col] = 1 + mat[node[0]][node[1]]
+                    q.append((row, col))
+                    vis.add((row, col))
+        
+        return mat
