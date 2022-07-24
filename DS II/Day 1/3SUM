@@ -1,0 +1,19 @@
+
+target = 0
+        checker = collections.Counter(nums)
+        sortedNums = sorted(checker.keys())
+        output = set()
+        i = 0
+	
+        while i < len(sortedNums) and sortedNums[i] <= target // 3:
+            j = len(sortedNums) - 1
+            while j > i and sortedNums[j] > target // 3:
+                remain = target - sortedNums[i] - sortedNums[j]
+                if remain in checker and (checker[remain] > 1 or (remain != sortedNums[i] and remain != sortedNums[j])):
+                    output.add(tuple(sorted([remain, sortedNums[i], sortedNums[j]])))
+                j -= 1
+            i += 1
+		
+        if target % 3 == 0 and checker[target // 3] >= 3:
+            output.add((target // 3, target // 3, target // 3))
+        return output
