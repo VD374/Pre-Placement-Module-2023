@@ -1,0 +1,8 @@
+class Solution(object):
+    def reverseList(self, head):
+       
+        ans = None
+        while head:
+            ans = ListNode(head.val, ans)
+            head = head.next
+        return ans
