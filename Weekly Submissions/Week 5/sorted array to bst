@@ -1,0 +1,6 @@
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        n=len(nums)
+        if n==0:
+            return None
+        return TreeNode(nums[n//2], self.sortedArrayToBST(nums[:n//2]), self.sortedArrayToBST(nums[1+n//2:]))
