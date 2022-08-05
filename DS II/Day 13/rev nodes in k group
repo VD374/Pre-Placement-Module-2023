@@ -1,0 +1,38 @@
+class Solution:
+    def reverseKGroup(self, head, k):
+        #optimised(constant space)
+        def rev(start,end): 
+            curr = start
+            nex = start.next
+            
+            while prev is not end:
+                curr.next = prev
+                prev = curr
+                curr = nex
+                if nex:
+                    nex = nex.next
+                    
+        if head is None or head.next is None or k == 1:
+            return head
+        
+        dummy = ListNode(-1)
+        dummy.next = head
+        befStart = dummy
+        end = head
+        
+        i = 0
+        while end:
+            i += 1
+            if i%k == 0:
+                start = befStart.next
+                temp = end.next
+                rev(start,end)
+                befStart.next = end
+                start.next = temp
+                befStart = start
+                end = temp
+                
+            else:
+                end = end.next
+                
+        return dummy.next
