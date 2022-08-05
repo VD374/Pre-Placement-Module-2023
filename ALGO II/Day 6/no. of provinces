@@ -1,0 +1,35 @@
+class UnionFind:
+    def __init__(self, k):
+        self.p = [i for i in range(k)]
+        self.rank = [1] * k
+    
+    def find(self, a):
+        p = self.p
+        if p[a] == a:
+            return a
+        p[a] = self.find(p[a])
+        return p[a]
+        
+    def union(self, a, b):
+        p = self.p
+        rank = self.rank
+        if self.find(a) == self.find(b):
+            return
+        if rank[a] < rank[b]:
+            a, b = b, a
+        p[b] = a
+        if rank[a] == rank[b]:
+            rank[a] += 1
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        uf = UnionFind(n)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if isConnected[i][j]:
+                    uf.union(uf.find(i), uf.find(j))
+        s = set()
+        for i in range(n):
+            s.add(uf.find(i))
+        return len(s)
