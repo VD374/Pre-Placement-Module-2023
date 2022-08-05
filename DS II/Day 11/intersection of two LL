@@ -1,0 +1,18 @@
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        a = headA
+        b = headB
+        intersectNode = None
+        while a:
+            a.val = str(a.val)
+            a = a.next
+        while b:
+            if type(b.val) == str:
+                intersectNode = b
+                break
+            b = b.next
+        a = headA
+        while a:
+            a.val = int(a.val)
+            a = a.next
+        return intersectNode
