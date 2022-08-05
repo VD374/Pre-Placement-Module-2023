@@ -1,0 +1,26 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        
+        combinations = []
+        
+        def generateSubSets(subSet, index, nums):
+            
+            # Add current set to combinations
+            combinations.append(subSet)
+            
+            # Boundry check
+            if index > len(nums) - 1:
+                return
+            
+            # Iterate over other solutions
+            for i in range (index, len(nums)):
+                generateSubSets(subSet + [nums[i]], i+1, nums)
+        
+        generateSubSets([], 0, nums)
+        
+        return combinations
+        
