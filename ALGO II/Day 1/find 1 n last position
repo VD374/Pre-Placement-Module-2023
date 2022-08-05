@@ -1,0 +1,10 @@
+def searchRange(self, nums: List[int], target: int) -> List[int]:
+        
+        if target not in nums:
+            return [-1,-1]
+        
+        l = nums.count(target)
+        a = nums.index(target)
+        
+        b = a+(l-1)
+        
