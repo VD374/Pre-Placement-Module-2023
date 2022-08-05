@@ -1,0 +1,22 @@
+ def __init__(self):
+        self.values = []
+    
+    def get(self, index): 
+        if  index < 0 or index >= len(self.values):
+            return -1
+        return self.values[index]
+
+    def addAtHead(self, val):
+        self.values = [val] + self.values
+
+    def addAtTail(self, val):
+        self.values.append(val)
+
+    def addAtIndex(self, index, val):
+        if  0 <= index <= len(self.values):                                  
+            # <= len(): If index equals the length of the linked list, the node will be appended to the end of the linked list. 
+            self.values = self.values[0:index] + [val] + self.values[index:]
+
+    def deleteAtIndex(self, index):
+        if  0 <= index < len(self.values):
+            self.values.pop(index)
