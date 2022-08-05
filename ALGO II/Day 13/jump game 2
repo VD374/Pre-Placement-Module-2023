@@ -1,0 +1,10 @@
+def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        jumps = [0 for i in range(n)]
+        reached = 0
+        for i in range(n):
+            for j in range(max(i + 1, reached + 1), min(i + nums[i] + 1, n)):
+                jumps[j] = jumps[i] + 1
+                reached += 1
+                
+        return jumps[-1]
