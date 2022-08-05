@@ -1,0 +1,38 @@
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        def lev(root):
+            if not root:
+                return
+            else:
+                q=[root]
+                while q:
+                    node=q.pop(0)
+                    if node.left and node.right:
+                        node.left.next=node.right
+                        q.append(node.left)
+                    if node.left and not node.right:
+                        temp=node.next
+                        while temp:
+                            if temp.left:
+                                node.left.next=temp.left
+                                break
+                            elif temp.right:
+                                node.left.next=temp.right
+                                break
+                            temp=temp.next
+                        q.append(node.left)  
+                                
+                        
+                    if node.right:
+                        temp=node.next
+                        while temp:
+                            if temp.left:
+                                node.right.next=temp.left
+                                break
+                            elif temp.right:
+                                node.right.next=temp.right
+                                break
+                            temp=temp.next
+                        q.append(node.right) 
+                return root
+        return lev(root)
